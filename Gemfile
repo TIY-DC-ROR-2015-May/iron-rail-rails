@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'httparty'
 gem 'haversine'
+gem 'figaro'
 
 group :development, :test do
   gem 'pry-rails'
