@@ -23,15 +23,7 @@ class BikeshareStation
     Haversine.distance(self.lat, self.long, Float(other_lat), Float(other_long)).to_meters
   end
 
-  def as_json opts
-    {
-      type:            "bikeshare",
-      latitude:        lat.to_s,
-      longitude:       long.to_s,
-      name:            name,
-      num_bikes:       num_bikes,
-      num_empty_docks: num_empty_docks,
-      last_update:     Time.at(last_update)
-    }
+  def last_update
+    Time.at @last_update
   end
 end

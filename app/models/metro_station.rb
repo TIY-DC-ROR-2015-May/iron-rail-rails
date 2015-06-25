@@ -15,22 +15,7 @@ class MetroStation < ActiveRecord::Base
     JSON.parse self[:address]
   end
 
-  def as_json opts
-    {
-      type:      "metro",
-      latitude:  lat.to_s,
-      longitude: long.to_s,
-      name:      name,
-      address:   address,
-      trains:    MetroAPI.upcoming_trains(code).map do |t|
-        {
-          line:      t.line,
-          time:      t.time,
-          cars:      t.cars,
-          direction: t.direction,
-          min:       t.min
-        }
-      end
-    }
+  def upcoming_trains
+    MetroAPI.upcoming_trains code
   end
 end
