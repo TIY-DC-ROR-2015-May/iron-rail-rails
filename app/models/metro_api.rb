@@ -3,7 +3,7 @@ require 'httparty'
 class MetroAPI
   include HTTParty
   base_uri "https://api.wmata.com/"
-  default_options[:query] = { api_key: "..." }
+  default_options[:query] = { api_key: ENV["WMATA_API_KEY"] }
 
   def self.create_stations!
     response = get "/Rail.svc/json/jStations"
