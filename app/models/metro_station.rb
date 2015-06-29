@@ -16,6 +16,14 @@ class MetroStation < ActiveRecord::Base
   end
 
   def upcoming_trains
-    MetroAPI.upcoming_trains code
+    # @a += 1
+    # @a = @a + 1
+    # @b ||= 1
+    # @b = @b || 1
+    @upcoming_trains ||= MetroAPI.upcoming_trains code
+  end
+
+  def next_train
+    upcoming_trains.first
   end
 end

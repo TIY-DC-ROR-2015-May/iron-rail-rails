@@ -10,7 +10,7 @@ class MetroTrain
   end
 
   def time
-    unless %( ARR BRD --- ).include? @min
+    unless %w( ARR BRD --- ).include? @min
       @fetched_at + @min.to_i.minutes
     end
   end

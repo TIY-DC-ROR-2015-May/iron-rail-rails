@@ -14,5 +14,6 @@ json.locations @locations do |location|
     json.trains  location.upcoming_trains do |train|
       json.(train, :line, :time, :cars, :direction, :min)
     end
+    json.next location.next_train
   end
 end
