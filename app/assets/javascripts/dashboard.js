@@ -1,0 +1,33 @@
+var searchHandler = function(e) {
+  if(e.keyCode === 13) {
+    var input = $(this).val()
+    var lat = input.split(",")[0]
+    var long = input.split(",")[1]
+
+    $.ajax("/v1", {
+      data: {
+        latitude: lat,
+        longitude: long
+      },
+      error: function() { alert("Failed to fetch data") },
+      // success: function(resp) {
+      //   updateDisplay(resp)
+      // }
+      success: updateDisplay
+    })
+  }
+}
+
+var updateDisplay = function(stations) {
+  $("ul.search-results").empty()
+  var locs = stations.locations
+  for (var i=0; i<locs.length; i++) {
+    var l = locs[i]
+    console.log(l)
+    $("ul.search-results").append("<li>" + l.name + " (" + l.type + ")</li>")
+  }
+}
+
+$(function() {
+  $(".location-search").on("keyup", searchHandler)
+})
