@@ -23,11 +23,24 @@ var updateDisplay = function(stations) {
   var locs = stations.locations
   for (var i=0; i<locs.length; i++) {
     var l = locs[i]
-    console.log(l)
-    $("ul.search-results").append("<li>" + l.name + " (" + l.type + ")</li>")
+    var $new_node = $("<li/>").text(l.name + " (" + l.type + ")").addClass(l.type);
+    $("ul.search-results").append($new_node)
   }
 }
 
 $(function() {
   $(".location-search").on("keyup", searchHandler)
+
+  $(".show-metro").on("click", function() {
+    $(".metro").show()
+    $(".bikeshare").hide()
+  })
+  $(".show-bike").on("click", function() {
+    $(".bikeshare").show()
+    $(".metro").hide()
+  })
+  $(".show-all").on("click", function() {
+    $(".metro").show()
+    $(".bikeshare").show()
+  })
 })
